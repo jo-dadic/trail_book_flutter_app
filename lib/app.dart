@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'features/trails/trails_screen.dart';
+
 class TrailBookApp extends StatelessWidget {
   const TrailBookApp({super.key});
 
@@ -10,10 +12,7 @@ class TrailBookApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('TrailBook')),
-        body: const Center(child: Text('TrailBook app')),
-      ),
+      home: const TrailsScreen(),
     );
   }
 }

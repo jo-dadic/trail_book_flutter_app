@@ -1,9 +1,17 @@
+enum TrailDifficulty {
+  easy,
+  moderate,
+  hard,
+}
+
 class Trail {
   const Trail({
     required this.id,
     required this.name,
     required this.location,
     required this.distanceKm,
+    required this.durationMinutes,
+    required this.elevationGainMeters,
     required this.difficulty,
     this.description = '',
     this.imageUrl,
@@ -14,7 +22,9 @@ class Trail {
   final String name;
   final String location;
   final double distanceKm;
-  final String difficulty;
+  final int durationMinutes;
+  final int elevationGainMeters;
+  final TrailDifficulty difficulty;
   final String description;
   final String? imageUrl;
   final bool isFavorite;
@@ -26,7 +36,9 @@ class Trail {
       name: json['name'] as String,
       location: json['location'] as String,
       distanceKm: (json['distanceKm'] as num).toDouble(),
-      difficulty: json['difficulty'] as String,
+      durationMinutes: json['durationMinutes'] as int,
+      elevationGainMeters: json['elevationGainMeters'] as int,
+      difficulty: TrailDifficulty.values.byName(json['difficulty'] as String),
       description: json['description'] as String? ?? '',
       imageUrl: json['imageUrl'] as String?,
       isFavorite: json['isFavorite'] as bool? ?? false,
@@ -40,7 +52,9 @@ class Trail {
       'name': name,
       'location': location,
       'distanceKm': distanceKm,
-      'difficulty': difficulty,
+      'durationMinutes': durationMinutes,
+      'elevationGainMeters': elevationGainMeters,
+      'difficulty': difficulty.name,
       'description': description,
       'imageUrl': imageUrl,
       'isFavorite': isFavorite,
